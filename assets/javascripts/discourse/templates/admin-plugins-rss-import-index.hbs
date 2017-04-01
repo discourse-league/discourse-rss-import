@@ -1,0 +1,36 @@
+{{#conditional-loading-spinner condition=model.loading}}
+{{#if model}}
+<div class="admin-container">
+  <div class="embeddable-hosts">
+    <table class="embedding">
+      <tr>
+        <th>Feed URL</th>
+        <th>Posting Username</th>
+        <th>Category</th>
+        <th> </th>
+      </tr>
+      {{#each model as |feed|}}
+        {{#if feed.editing}}
+          <tr>
+            <td>{{input value=feed.url placeholder="example.com/rss" enter="save" class="host-name"}}</td>
+            <td>{{user-selector usernames=usernames class="user-selector" single="true" canReceiveUpdates="true"}}</td>
+            <td>{{category-chooser value=categoryId}}</td>
+            <td>{{d-button icon="checkmark" action="saveFeed" class="btn-primary"}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>{{feed.url}}</td>
+            <td>{{feed.username}}</td>
+            <td>{{feed.category}}</td>
+            <td>{{d-button icon="pencil" action="editFeed" class="btn-primary"}} {{d-button icon="cancel" action="deleteFeed" class="btn-primary"}}</td>
+          </tr>
+        {{/if}}
+      {{/each}}
+    </table>
+  </div>
+</div>
+{{else}}
+<p>{{i18n "admin.rss_import.no_feeds_description"}}</p>
+{{/if}}
+{{d-button label="admin.rss_import.add_feed" action="addFeed" icon="plus" class="btn-primary add-host"}}
+{{/conditional-loading-spinner}}

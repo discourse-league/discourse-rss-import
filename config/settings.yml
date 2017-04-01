@@ -1,0 +1,4 @@
+plugins:
+  rss_import_enabled:
+    default: true
+    client: true

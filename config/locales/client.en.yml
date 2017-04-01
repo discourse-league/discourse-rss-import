@@ -1,0 +1,13 @@
+en:
+  js:
+    rss_import:
+      title: "RSS Import"
+  admin_js:
+    admin:
+      rss_import:
+        no_feeds_description: "If you would like to create new topics from an RSS feed, start by adding the feed here."
+        headers:
+          url: "URL"
+          posting_username: "Posting Username"
+          post_to_category: "Post to Category"
+          import_existing: "Import Existing?"
