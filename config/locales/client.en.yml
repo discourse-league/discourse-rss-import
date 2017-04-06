@@ -1,4 +1,6 @@
 en:
+  rss_import:
+    read_more: "Read more..."
   js:
     rss_import:
       title: "RSS Import"
