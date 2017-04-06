@@ -2,10 +2,11 @@ en:
   js:
     rss_import:
       title: "RSS Import"
-  admin_js:
     admin:
       rss_import:
+        add_feed: "Add Feed"
         no_feeds_description: "If you would like to create new topics from an RSS feed, start by adding the feed here."
+        delete_feed_confirmation: "Delete this feed?"
         headers:
           url: "URL"
           posting_username: "Posting Username"

@@ -12,17 +12,17 @@
       {{#each model as |feed|}}
         {{#if feed.editing}}
           <tr>
-            <td>{{input value=feed.url placeholder="example.com/rss" enter="save" class="host-name"}}</td>
-            <td>{{user-selector usernames=usernames class="user-selector" single="true" canReceiveUpdates="true"}}</td>
-            <td>{{category-chooser value=categoryId}}</td>
-            <td>{{d-button icon="checkmark" action="saveFeed" class="btn-primary"}}</td>
+            <td>{{input value=feed.url placeholder="http://example.com/rss" enter="save" class="host-name"}}</td>
+            <td>{{user-selector usernames=feed.username class="user-selector" single="true" canReceiveUpdates="true"}}</td>
+            <td>{{category-chooser value=feed.category_id}}</td>
+            <td>{{d-button icon="check" action="saveFeed" actionParam=feed class="btn-primary" disabled=feed.disableSave}} {{d-button icon="times" action="cancelEdit" actionParam=feed class="btn-danger"}}</td>
           </tr>
         {{else}}
           <tr>
             <td>{{feed.url}}</td>
-            <td>{{feed.username}}</td>
-            <td>{{feed.category}}</td>
-            <td>{{d-button icon="pencil" action="editFeed" class="btn-primary"}} {{d-button icon="cancel" action="deleteFeed" class="btn-primary"}}</td>
+            <td>{{#link-to 'adminUser' feed.user_id feed.username }}{{feed.username}}{{/link-to}}</td>
+            <td>{{category-link feed.category allowUncategorized="true" link="false"}}</td>
+            <td>{{d-button icon="pencil" action="editFeed" actionParam=feed class="btn-primary"}} {{d-button icon="trash-o" action="deleteFeed" actionParam=feed class="btn-danger"}}</td>
           </tr>
         {{/if}}
       {{/each}}

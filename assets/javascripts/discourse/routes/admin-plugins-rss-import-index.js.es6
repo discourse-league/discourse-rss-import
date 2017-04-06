@@ -1,6 +1,8 @@
+import Feed from '../models/feed';
+
 export default Discourse.Route.extend({
   model() {
-    return [];
+    return Feed.findAll();
   },
 
   setupController(controller, model) {
