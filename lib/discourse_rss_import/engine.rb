@@ -23,7 +23,7 @@ module DiscourseRssImport
                 last_polled = feed[:last_polled] || 20.years.ago
                 build_date = rss.channel.lastBuildDate || rss.channel.pubDate
 
-                if !rss.nil? && build_date > last_polled
+                if !rss.nil?
                   guids = PluginStore.get("discourse_rss_import", "feed_guids_" + feed[:id].to_s) || []
                   case rss.feed_type
                     when 'rss'
@@ -36,6 +36,7 @@ module DiscourseRssImport
                             feed_user,
                             title: item.title,
                             category: feed[:category_id],
+                            featured_link: item.link,
                             raw: raw
                           )
                           if topic
