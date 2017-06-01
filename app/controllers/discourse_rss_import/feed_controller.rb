@@ -4,7 +4,14 @@ module DiscourseRssImport
 
     def all
       feeds = PluginStore.get("discourse_rss_import", "feeds") || []
-      feeds.each {|feed| feed[:username] = User.find_by(id: feed[:user_id]).username}
+      feeds.each do |feed| 
+        user = User.find_by(id: feed[:user_id])
+        user.nil? ? (username = "system") : (username = user.username)
+        if username == "system"
+          feed[:user_id] = -1
+        end
+        feed[:username] = username
+      end
       render_json_dump(feeds)
     end
 
